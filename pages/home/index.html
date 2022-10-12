@@ -6,12 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/styles/globalStyles.css" />
+  <link rel="stylesheet" href="/styles/button.css" />
   <link rel="stylesheet" href="index.css" />
   <title>Git Search</title>
 </head>
 
 <body>
-  <main class="container">
+  <main class="container-1">
     <section class="left-section">
       <div class="left-content">
         <h1 class="title-1">Git Search</h1>
@@ -19,18 +20,18 @@
         <div class="recent-content">
           <span class="text-3">Achados Recentemente:</span>
           <ul class="recent-users">
-            <li class="user">
+           <!--  <li class="user">
               <img src="../../src/img/Ellipse 1.svg" alt="ícones de fotos de perfil">
-              <button class="btn-user" hidden>Acessar este perfil</button>
-            </li>
-            <li class="user">
-              <img src="../../src/img/Ellipse 2.svg" alt="ícones de fotos de perfil">
               <button class="btn-user">Acessar este perfil</button>
             </li>
             <li class="user">
-              <img src="../../src/img/Ellipse 3.svg" alt="ícones de fotos de perfil">
-              <button class="btn-user" hidden>Acessar este perfil</button>
+              <img src="../../src/img/Ellipse 2.svg" alt="ícones de fotos de perfil">
+              <button class="btn-user hidden">Acessar este perfil</button>
             </li>
+            <li class="user">
+              <img src="../../src/img/Ellipse 3.svg" alt="ícones de fotos de perfil">
+              <button class="btn-user hidden">Acessar este perfil</button>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -40,11 +41,16 @@
       <div class="right-content">
         <h2 class="text-2">Procurar por um usuário</h2>
         <h3 class="text-4">Usuário github</h3>
-        <input type="text" placeholder="Digite um usuário do github aqui..">
-        <button>Ver perfil do github</button>
+        <input class="" type="text" placeholder="Digite um usuário do github aqui..">
+        <span id="not-found" class="hidden">Usuário não encontrado</span>
+        <button data-search="default" class="btn-search">Ver perfil do github</button>
+        <button data-search="default" class="btn-search btn-loading hidden">
+          <img src="../../src/img/spinner.png" alt="carregamento de página">
+        </button>
       </div>
     </section>
   </main>
+  <script src="../../data/data.js"></script>
   <script src="index.js"></script>
 </body>
 

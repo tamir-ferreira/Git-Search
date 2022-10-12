@@ -1,1 +1,75 @@
-/* Desenvolva sua estilização aqui...*/
+/* ------------ PROFILE -------------- */
+body {
+    background-color: var(--color-grey-2);
+}
+
+header {
+    padding: 61px 0 70px;
+    /* border: 1px solid green; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.card-container>img {
+    color: var(--color-white-opacity);
+    border: 2px solid var(--color-brand-2);
+    border-radius: 50px;
+    width: 80px;
+    height: 80px;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.card-content>span {
+    color: var(--color-white-opacity);
+}
+
+nav {
+    display: flex;
+    gap: 14px;
+}
+
+section {
+    width: 100%;
+}
+
+.card-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+.card {
+    width: 381px;
+    /* border: 1px solid yellow; */
+    padding: 40px 27px;
+    border-radius: var(--radius-2);
+    border: 2px solid var(--color-border-disable);
+}
+
+.card:hover {
+    border: 2px solid var(--color-white);
+    background-color: var(--color-grey-1);
+}
+
+.card>p {
+    margin: 21px 0 27px 0;
+    color: var(--color-white-opacity);
+}
+
+.container-btns{
+    display: flex;
+    gap: 14px;
+}

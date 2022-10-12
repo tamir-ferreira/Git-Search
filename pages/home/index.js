@@ -44,12 +44,12 @@ function mapBtnsUsers() {
         btnUser.onclick = () => {
             // userSelected = []
             const id = btnUser.id
-            // console.log(btnUser.id)
+            console.log(lastUsers)
             userSelected = lastUsers[id]
             repoSelected = lastRepos[id]
-            console.log("repositorio", repoSelected)
+            // console.log("repositorio", userSelected)
 
-            updateUserSelected(lastRepos)
+            updateUserSelected(userSelected)
             updateRepoSelected(repoSelected)
             window.location.replace("../profile/index.html");
 
