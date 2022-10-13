@@ -59,6 +59,17 @@ section {
     border: 2px solid var(--color-border-disable);
 }
 
+.card p {
+    height: 65px;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    max-height: 4.5em;
+    line-height: 1.5em;
+}
+
+
 .card:hover {
     border: 2px solid var(--color-white);
     background-color: var(--color-grey-1);
@@ -69,7 +80,7 @@ section {
     color: var(--color-white-opacity);
 }
 
-.container-btns{
+.container-btns {
     display: flex;
     gap: 14px;
 }

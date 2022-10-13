@@ -2,13 +2,12 @@ const cardContainer = document.querySelector(".card-container")
 const cardList = document.querySelector(".card-list")
 userSelected = JSON.parse(localStorage.getItem("userGit"))
 repoSelected = JSON.parse(localStorage.getItem("repoGit"))
-document.title = userSelected.name || "Usuário GitHub"
-// console.log("repositorio",repoSelected)
+document.title = userSelected.name || "GitHub User"
+
 
 /* ----------- RENDERIZAR O CARD DE IDENTIFICAÇÃO DO USUÁRIO -----------*/
 function renderCardUser(user) {
     const { name, avatar_url, bio, login, email } = user
-    console.log(user)
     cardContainer.insertAdjacentHTML("afterbegin",
         `<img src="${avatar_url}" alt="" />
         <div class="card-content">
@@ -24,11 +23,9 @@ renderCardUser(userSelected)
 
 /* ----------- RENDERIZAR OS CARDS DOS REPOSITÓRIOS DO USUÁRIO -----------*/
 function renderCardRepos(repositories) {
-    
     cardList.innerHTML = ""
     repositories.forEach(repository => {
-        // console.log(repository)
-        const {name, description, html_url, homepage} = repository
+        const { name, description, html_url, homepage } = repository
 
         cardList.insertAdjacentHTML("afterbegin",
             `<li class="card">
@@ -38,7 +35,7 @@ function renderCardRepos(repositories) {
                 <a href=${html_url}>
                     <button class="btn-small">Repositório</button>
                 </a>
-                <a href=${homepage || ''}>
+                <a target="_blank" href=${homepage || ''}>
                     <button class="btn-small">Demo</button>
                 </a>
                 </div>
