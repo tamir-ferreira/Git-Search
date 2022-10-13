@@ -1,16 +1,7 @@
 /* ------------ HOME -------------- */
-/* body {
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} */
-
 main {
     display: flex;
     height: 100vh;
-    /* max-height: 100vh; */
-    /* border: 1px solid green; */
 }
 
 .left-section {
@@ -24,15 +15,11 @@ main {
 }
 
 .left-content {
-    /* border: 1px solid green; */
     width: 425px;
     position: relative;
 }
 
-
 .left-content>p {
-    /* padding-top: 33px; */
-    /* padding-bottom: 55px; */
     padding: 33px 0 55px 13px;
 }
 
@@ -72,7 +59,6 @@ main {
 }
 
 .right-content {
-    /* border: 1px solid yellow; */
     width: 316px;
 }
 

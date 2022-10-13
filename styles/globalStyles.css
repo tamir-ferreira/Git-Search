@@ -42,7 +42,6 @@
 }
 
 body {
-  /* display: flex; */
   align-items: center;
   height: 100vh;
   background-color: var(--color-grey-4);
@@ -91,12 +90,9 @@ ul {
 .container-1 {
   max-width: 1440px;
   margin: 0 auto;
-  /* text-align: center; */
 }
 
 .container-2 {
   width: 784px;
   margin: 0 auto;
-  /* text-align: center; */
-  /* border: 1px solid red; */
 }

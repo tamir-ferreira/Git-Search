@@ -5,7 +5,6 @@ body {
 
 header {
     padding: 61px 0 70px;
-    /* border: 1px solid green; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,6 +28,7 @@ header {
     display: flex;
     flex-direction: column;
     gap: 14px;
+    width: 400px;
 }
 
 .card-content>span {
@@ -53,7 +53,6 @@ section {
 
 .card {
     width: 381px;
-    /* border: 1px solid yellow; */
     padding: 40px 27px;
     border-radius: var(--radius-2);
     border: 2px solid var(--color-border-disable);
@@ -68,7 +67,6 @@ section {
     max-height: 4.5em;
     line-height: 1.5em;
 }
-
 
 .card:hover {
     border: 2px solid var(--color-white);

@@ -61,6 +61,7 @@ inputSearch.onkeyup = () => {
             btnSearch[1].style.display = "block"
             requestGitUser(inputSearch.value);
         }
+
     } else {
         btnSearch[0].classList.remove("btn-color")
         btnSearch[0].style.display = "block"
@@ -86,6 +87,7 @@ async function requestGitUser(user) {
             btnSearch[0].style.display = "block"
             btnSearch[1].style.display = "none"
             notFound.style.display = "block"
+
         } else {
             updateStorage(responseJSON, lastUsers, "lastUsersGit")
             updateUserSelected(responseJSON)
@@ -100,19 +102,16 @@ async function requestGitUser(user) {
     }
 }
 
+
 /* -------------- ATUALIZAR NO STORAGE ÚLTIMOS USUÁRIOS PESQUISADOS ------------ */
 function updateStorage(newUser, array, key) {
     array = JSON.parse(localStorage.getItem(key))
-    // console.log(lastUsers)
 
     if (array == null) array = []
-
     array.unshift(newUser)
 
     if (array.length === 4) array.pop()
-
     localStorage.setItem(key, JSON.stringify(array))
-    // console.log(lastUsers)
 }
 
 
