@@ -2,6 +2,7 @@ const recentUsers = document.querySelector(".recent-users")
 const inputSearch = document.querySelector('input')
 const notFound = document.querySelector('#not-found')
 const btnSearch = document.querySelectorAll('[data-search]')
+const form = document.querySelector("form")
 
 
 
@@ -64,6 +65,7 @@ inputSearch.onkeyup = () => {
         // console.dir()
         btnSearch[0].classList.add("btn-color")
         btnSearch[0].onclick = () => {
+            form.onsubmit = (event) => event.preventDefault();
             btnSearch[0].style.display = "none"
             btnSearch[1].style.display = "block"
             requestGitUser(inputSearch.value);
@@ -96,15 +98,15 @@ async function requestGitUser(user) {
             try {
                 const response2 = await fetch(reposUrl)
                 const responseJSON2 = await response2.json()
-                updateStorage(responseJSON,lastUsers,"lastUsersGit")
+                updateStorage(responseJSON, lastUsers, "lastUsersGit")
                 updateUserSelected(responseJSON)
 
-                updateStorage(responseJSON2,lastRepos,"lastReposGit")
+                updateStorage(responseJSON2, lastRepos, "lastReposGit")
                 updateRepoSelected(responseJSON2)
 
                 window.location.replace("../profile/index.html")
-            } catch{
-               
+            } catch {
+
             }
         }
     }
