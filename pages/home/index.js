@@ -104,7 +104,7 @@ async function requestGitUser(user) {
 
                 window.location.replace("../profile/index.html")
             } catch{
-
+               
             }
         }
     }
