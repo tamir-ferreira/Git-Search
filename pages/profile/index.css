@@ -82,3 +82,14 @@ section {
     display: flex;
     gap: 14px;
 }
+
+.empty-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+.empty{
+    display: none;
+}

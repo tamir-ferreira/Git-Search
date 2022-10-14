@@ -4,6 +4,7 @@ const cardContainer = document.querySelector(".card-container")
 const cardList = document.querySelector(".card-list")
 const sendMail = document.querySelector("#send-mail")
 const btnMail = document.querySelector("#btn-mail")
+const empty = document.querySelector(".empty-container")
 userSelected = JSON.parse(localStorage.getItem("userGit"))
 repoSelected = JSON.parse(localStorage.getItem("repoGit"))
 document.title = userSelected.name || "GitHub User"
@@ -17,7 +18,6 @@ function renderCardUser(user) {
     let email = getEmail(login)
     email.then(response => {
         email = response
-        console.log(response)
         cardContainer.insertAdjacentHTML("afterbegin",
             `<img src="${avatar_url}" alt="" />
             <div class="card-content">
@@ -41,6 +41,10 @@ function renderCardUser(user) {
 /* ----------- RENDERIZAR OS CARDS DOS REPOSITÓRIOS DO USUÁRIO -----------*/
 function renderCardRepos(repositories) {
     cardList.innerHTML = ""
+
+    if (repositories == "") empty.classList.remove('empty')
+    else empty.classList.add('empty')
+
     repositories.forEach(repository => {
         const { name, description, html_url, homepage } = repository
 
