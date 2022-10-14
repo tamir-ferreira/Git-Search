@@ -30,7 +30,7 @@ function renderCardUser(user) {
             event.preventDefault()
         }
     }
-    
+
     renderCardRepos(getStorageSelected("repoGit"))
 }
 
@@ -67,22 +67,3 @@ function renderCardRepos(repositories) {
 function getStorageSelected(storage) {
     return JSON.parse(localStorage.getItem(storage))
 }
-
-
-/* --------------- RECUPERAR ENDEREÇO DE E-MAIL DO USUÁRIO ---------------- */
-/* async function getEmail(username) {
-    try {
-        const result = await octokit.request("GET /users/{owner}", {
-            owner: username,
-        });
-
-        if (result.data.email != null) {
-            sendMail.href = `mailto:${result.data.email}`
-            return result.data.email
-        }
-
-    } catch (error) {
-        console.log(`Error! Status: ${error.status}. Message: ${error.response.data.message}`)
-    }
-} */
-
