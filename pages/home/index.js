@@ -43,8 +43,9 @@ function mapBtnsUsers() {
             userSelected = lastUsers[id]
             repoSelected = lastRepos[id]
 
-            updateUserSelected(userSelected)
-            updateRepoSelected(repoSelected)
+            updateStorageSelected(userSelected, "userGit")
+            updateStorageSelected(repoSelected, "repoGit")
+            // updateRepoSelected(repoSelected)
             window.location.replace("../profile/index.html");
         }
     })
@@ -90,9 +91,9 @@ async function requestGitUser(user) {
 
         } else {
             updateStorage(responseJSON, lastUsers, "lastUsersGit")
-            updateUserSelected(responseJSON)
+            updateStorageSelected(responseJSON, "userGit" )
             updateStorage(responseJSON2, lastRepos, "lastReposGit")
-            updateRepoSelected(responseJSON2)
+            updateStorageSelected(responseJSON2, "repoGit")
 
             window.location.replace("../profile/index.html")
         }
@@ -116,12 +117,12 @@ function updateStorage(newUser, array, key) {
 
 
 /* -------------- ATUALIZAR NO STORAGE USUÁRIO SELECIONADO ------------ */
-function updateUserSelected(newUser) {
-    localStorage.setItem("userGit", JSON.stringify(newUser))
+function updateStorageSelected(newData, storage) {
+    localStorage.setItem(storage, JSON.stringify(newData))
     console.log(userSelected)
 }
 
-function updateRepoSelected(newRepo) {
+/* function updateRepoSelected(newRepo) {
     localStorage.setItem("repoGit", JSON.stringify(newRepo))
     console.log(userSelected)
-}
+} */

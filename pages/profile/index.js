@@ -31,7 +31,7 @@ function renderCardUser(user) {
 
     btnMail.onclick = (event) => {
         if (email == null) {
-            alert('Endereço de E-mail não disponível no GitHub')
+            alert('Endereço de E-mail deste usuário não disponível no GitHub.')
             event.preventDefault()
         }
     }
@@ -41,10 +41,7 @@ function renderCardUser(user) {
 /* ----------- RENDERIZAR OS CARDS DOS REPOSITÓRIOS DO USUÁRIO -----------*/
 function renderCardRepos(repositories) {
     cardList.innerHTML = ""
-
-    if (repositories == "") empty.classList.remove('empty')
-    else empty.classList.add('empty')
-
+    
     repositories.forEach(repository => {
         const { name, description, html_url, homepage } = repository
 
@@ -63,6 +60,9 @@ function renderCardRepos(repositories) {
             </li>`
         )
     });
+
+    if (repositories == "") empty.classList.remove('empty')
+    else empty.classList.add('empty')
 }
 
 

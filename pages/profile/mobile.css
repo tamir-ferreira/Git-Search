@@ -1,0 +1,30 @@
+/* ------------- PROFILE MOBILE -------------- */
+@media (max-width: 600px) {
+    header.container-2 {
+        width: 100%;
+        flex-direction: column;
+        padding: 40px 20px;
+    }
+
+    .card-container {
+        width: 100%;
+        padding-bottom: 30px;
+    }
+
+    .card-content {
+        width: 100%;
+    }
+
+    main.container-2{
+        width: 100%;
+    }
+
+    .card-list{
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .card{
+       width: 100%;
+    }
+}
