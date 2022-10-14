@@ -1,3 +1,7 @@
+import { Octokit } from "https://cdn.skypack.dev/octokit";
+const token = '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'
+const octokit = new Octokit({ auth: token });
+
 const recentUsers = document.querySelector(".recent-users")
 const inputSearch = document.querySelector('input')
 const notFound = document.querySelector('#not-found')
@@ -6,8 +10,9 @@ const form = document.querySelector("form")
 
 
 /* -------------- VERIFICAR ÚLTIMOS USUÁRIOS PESQUISADOS ------------- */
-lastUsers = JSON.parse(localStorage.getItem("lastUsersGit"))
-lastRepos = JSON.parse(localStorage.getItem("lastReposGit"))
+let lastUsers = getStorageSelected("lastUsersGit")
+let lastRepos = getStorageSelected("lastReposGit")
+let lastEmails = getStorageSelected("lastEmailsGit")
 if (lastUsers != null) renderLastUsers(lastUsers)
 
 
@@ -39,13 +44,11 @@ function mapBtnsUsers() {
     btnUsers.forEach(btnUser => {
         btnUser.onclick = () => {
             const id = btnUser.id
-            console.log(lastUsers)
-            userSelected = lastUsers[id]
-            repoSelected = lastRepos[id]
 
-            updateStorageSelected(userSelected, "userGit")
-            updateStorageSelected(repoSelected, "repoGit")
-            // updateRepoSelected(repoSelected)
+            updateStorageSelected(lastUsers[id], "userGit")
+            updateStorageSelected(lastRepos[id], "repoGit")
+            updateStorageSelected(lastEmails[id], "emailGit")
+
             window.location.replace("../profile/index.html");
         }
     })
@@ -53,11 +56,12 @@ function mapBtnsUsers() {
 
 
 /* ------------- MONITORAR EVENTOS DE PESQUISA DE USUÁRIOS ------------- */
+form.onsubmit = (event) => event.preventDefault();
+
 inputSearch.onkeyup = () => {
     if (inputSearch.value != "") {
         btnSearch[0].classList.add("btn-color")
         btnSearch[0].onclick = () => {
-            form.onsubmit = (event) => event.preventDefault();
             btnSearch[0].style.display = "none"
             btnSearch[1].style.display = "block"
             requestGitUser(inputSearch.value);
@@ -82,25 +86,41 @@ async function requestGitUser(user) {
         const response = await fetch(userUrl)
         const responseJSON = await response.json()
         const response2 = await fetch(reposUrl)
-        const responseJSON2 = await response2.json()
-        
-        if (responseJSON.message == 'Not Found') {
-            btnSearch[0].style.display = "block"
-            btnSearch[1].style.display = "none"
-            notFound.style.display = "block"
+        const response2JSON = await response2.json()
+        const response3 = await octokit.request("GET /users/{owner}", {
+            owner: user,
+        });
 
-        } else {
+        if (responseJSON.message != 'Not Found') {
             updateStorage(responseJSON, lastUsers, "lastUsersGit")
-            updateStorageSelected(responseJSON, "userGit" )
-            updateStorage(responseJSON2, lastRepos, "lastReposGit")
-            updateStorageSelected(responseJSON2, "repoGit")
-
+            updateStorage(response2JSON, lastRepos, "lastReposGit")
+            updateStorage(response3, lastEmails, "lastEmailsGit")
+            updateStorageSelected(responseJSON, "userGit")
+            updateStorageSelected(response2JSON, "repoGit")
+            updateStorageSelected(response3, "emailGit")
             window.location.replace("../profile/index.html")
-        }
+
+        } else requestError()
+
     }
-    catch(error) {
+    catch (error) {
+        requestError()
         console.log(error)
     }
+}
+
+
+/* --------------- EM CASO DE ERRO NA REQUISIÇÂO ---------------- */
+function requestError() {
+    btnSearch[0].style.display = "block"
+    btnSearch[1].style.display = "none"
+    notFound.style.display = "block"
+}
+
+
+/* --------------- ACESSAR O LOCALSTORAGE SELECIONADO ---------------- */
+function getStorageSelected(storage) {
+    return JSON.parse(localStorage.getItem(storage))
 }
 
 
@@ -119,10 +139,4 @@ function updateStorage(newUser, array, key) {
 /* -------------- ATUALIZAR NO STORAGE USUÁRIO SELECIONADO ------------ */
 function updateStorageSelected(newData, storage) {
     localStorage.setItem(storage, JSON.stringify(newData))
-    console.log(userSelected)
 }
-
-/* function updateRepoSelected(newRepo) {
-    localStorage.setItem("repoGit", JSON.stringify(newRepo))
-    console.log(userSelected)
-} */

@@ -1,33 +1,28 @@
-import { Octokit } from "https://cdn.skypack.dev/octokit";
-
 const cardContainer = document.querySelector(".card-container")
 const cardList = document.querySelector(".card-list")
 const sendMail = document.querySelector("#send-mail")
 const btnMail = document.querySelector("#btn-mail")
 const empty = document.querySelector(".empty-container")
-userSelected = JSON.parse(localStorage.getItem("userGit"))
-repoSelected = JSON.parse(localStorage.getItem("repoGit"))
-document.title = userSelected.name || "GitHub User"
+document.title = getStorageSelected("userGit").name || getStorageSelected("userGit").login
 
 
-renderCardUser(userSelected)
+renderCardUser(getStorageSelected("userGit"))
 
 /* ----------- RENDERIZAR O CARD DE IDENTIFICAÇÃO DO USUÁRIO -----------*/
 function renderCardUser(user) {
     const { name, avatar_url, bio, login } = user
-    let email = getEmail(login)
-    email.then(response => {
-        email = response
-        cardContainer.insertAdjacentHTML("afterbegin",
-            `<img src="${avatar_url}" alt="" />
+    let email = getStorageSelected("emailGit").data.email
+
+    if (email != null) sendMail.href = `mailto:${email}`
+    
+    cardContainer.insertAdjacentHTML("afterbegin",
+        `<img src="${avatar_url}" alt="" />
             <div class="card-content">
                 <h2 class="title-2">${name || login}</h2>
                 <span class="bio text-3">${bio || ''}</span>
                 <span class="text-3">${email || ''}</span>
             </div>`
-        )
-        renderCardRepos(repoSelected)
-    })
+    )
 
     btnMail.onclick = (event) => {
         if (email == null) {
@@ -35,13 +30,15 @@ function renderCardUser(user) {
             event.preventDefault()
         }
     }
+    
+    renderCardRepos(getStorageSelected("repoGit"))
 }
 
 
 /* ----------- RENDERIZAR OS CARDS DOS REPOSITÓRIOS DO USUÁRIO -----------*/
 function renderCardRepos(repositories) {
     cardList.innerHTML = ""
-    
+
     repositories.forEach(repository => {
         const { name, description, html_url, homepage } = repository
 
@@ -66,11 +63,14 @@ function renderCardRepos(repositories) {
 }
 
 
-/* --------------- RECUPERAR ENDEREÇO DE E-MAIL DO USUÁRIO ---------------- */
-async function getEmail(username) {
-    const token = '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'
-    const octokit = new Octokit({ auth: token });
+/* --------------- ACESSAR O LOCALSTORAGE SELECIONADO ---------------- */
+function getStorageSelected(storage) {
+    return JSON.parse(localStorage.getItem(storage))
+}
 
+
+/* --------------- RECUPERAR ENDEREÇO DE E-MAIL DO USUÁRIO ---------------- */
+/* async function getEmail(username) {
     try {
         const result = await octokit.request("GET /users/{owner}", {
             owner: username,
@@ -84,5 +84,5 @@ async function getEmail(username) {
     } catch (error) {
         console.log(`Error! Status: ${error.status}. Message: ${error.response.data.message}`)
     }
-}
+} */
 
