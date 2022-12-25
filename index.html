@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/globalStyles.css" />
+    <link rel="stylesheet" href="./styles/button.css" />
+    <link rel="stylesheet" href="./pages/home/index.css" />
+    <link rel="stylesheet" href="./pages/home/mobile.css" />
+    <script defer type="module" src="./pages/home/index.js"></script>
+    <title>Git Search</title>
+  </head>
+
+  <body>
+    <main class="container-1">
+      <section class="left-section">
+        <div class="left-content">
+          <h1 class="title-1">Git Search</h1>
+          <p class="text-1">
+            Encontre e se conecte com profissionais de forma rápida e fácil
+          </p>
+          <div class="recent-content">
+            <span class="text-3">Achados Recentemente:</span>
+            <ul class="recent-users">
+              <!-- RENDERIZADO PELO JS -->
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="right-section">
+        <form class="right-content">
+          <h2 class="text-2">Procurar por um usuário</h2>
+          <label for="input" class="text-4">Usuário github</label>
+          <input
+            id="input"
+            type="text"
+            placeholder="Digite um usuário do github aqui.."
+          />
+          <span id="not-found" class="hidden">Usuário não encontrado</span>
+          <button data-search="default" class="btn-search">
+            Ver perfil do github
+          </button>
+          <button data-search="default" class="btn-search btn-loading hidden">
+            <img src="./src/img/spinner.png" alt="carregamento de página" />
+          </button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
