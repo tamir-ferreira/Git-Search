@@ -1,6 +1,6 @@
-import { Octokit } from "https://cdn.skypack.dev/octokit";
-const token = "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";
-const octokit = new Octokit({ auth: token });
+// import { Octokit } from "https://cdn.skypack.dev/octokit";
+
+// const octokit = new Octokit({ auth: token });
 
 const recentUsers = document.querySelector(".recent-users");
 const inputSearch = document.querySelector("input");
@@ -11,7 +11,7 @@ const form = document.querySelector("form");
 /* -------------- VERIFICAR ÚLTIMOS USUÁRIOS PESQUISADOS ------------- */
 let lastUsers = getStorageSelected("lastUsersGit");
 let lastRepos = getStorageSelected("lastReposGit");
-let lastEmails = getStorageSelected("lastEmailsGit");
+// let lastEmails = getStorageSelected("lastEmailsGit");
 if (lastUsers != null) renderLastUsers(lastUsers);
 
 /* -------------- RENDERIZAR MINIATURAS ÚLTIMOS USUÁRIOS ------------- */
@@ -82,17 +82,17 @@ async function requestGitUser(user) {
     const responseJSON = await response.json();
     const response2 = await fetch(reposUrl);
     const response2JSON = await response2.json();
-    const response3 = await octokit.request("GET /users/{owner}", {
+    /* const response3 = await octokit.request("GET /users/{owner}", {
       owner: user,
-    });
+    }); */
 
     if (responseJSON.message != "Not Found") {
       updateStorage(responseJSON, lastUsers, "lastUsersGit");
       updateStorage(response2JSON, lastRepos, "lastReposGit");
-      updateStorage(response3, lastEmails, "lastEmailsGit");
+      // updateStorage(response3, lastEmails, "lastEmailsGit");
       updateStorageSelected(responseJSON, "userGit");
       updateStorageSelected(response2JSON, "repoGit");
-      updateStorageSelected(response3, "emailGit");
+      // updateStorageSelected(response3, "emailGit");
       // console.log(response2JSON);
       window.location.replace("../../pages/profile/index.html");
     } else requestError();
