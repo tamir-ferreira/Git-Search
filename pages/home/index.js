@@ -45,7 +45,7 @@ function mapBtnsUsers() {
 
       updateStorageSelected(lastUsers[id], "userGit");
       updateStorageSelected(lastRepos[id], "repoGit");
-      updateStorageSelected(lastEmails[id], "emailGit");
+      // updateStorageSelected(lastEmails[id], "emailGit");
 
       window.location.replace("../../pages/profile/index.html");
     };
